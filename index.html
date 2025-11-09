@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrandCraft — Personal Brand Visualizer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #7c3aed;
+            --accent: #06b6d4;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 0;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--dark), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.3);
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .input-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: var(--dark);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .keywords {
+            display: flex;
+            gap: 10px;
+        }
+
+        .keyword-input {
+            flex: 1;
+        }
+
+        .generate-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .generate-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .visualization-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .brand-preview {
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .brand-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .brand-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .brand-tagline {
+            color: var(--gray);
+            font-size: 16px;
+        }
+
+        .color-palette {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .color {
+            width: 60px;
+            height: 60px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .color:hover {
+            transform: scale(1.1);
+        }
+
+        .color-primary {
+            background: var(--primary);
+        }
+
+        .color-secondary {
+            background: var(--secondary);
+        }
+
+        .color-accent {
+            background: var(--accent);
+        }
+
+        .color-light {
+            background: var(--light);
+            border: 1px solid #e2e8f0;
+        }
+
+        .color-dark {
+            background: var(--dark);
+        }
+
+        .typography-sample {
+            margin-bottom: 30px;
+        }
+
+        .font-primary {
+            font-family: 'Inter', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .font-secondary {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .ui-elements {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .ui-element {
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .btn-sample {
+            background: var(--primary);
+            color: white;
+        }
+
+        .card-sample {
+            background: white;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .export-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .export-btn {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 0 10px;
+        }
+
+        .export-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 1px solid #e2e8f0;
+            color: var(--gray);
+        }
+
+        .portfolio-link {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .ui-elements {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo"><span>BrandCraft</span></div>
+            <nav class="nav-links">
+                <a href="#" class="active">Home</a>
+                <a href="#">Features</a>
+                <a href="#">Examples</a>
+                <a href="#">Pricing</a>
+                <a href="#">Contact</a>
+            </nav>
+        </header>
+
+        <section class="hero">
+            <h1>Visualize Your Personal Brand Identity</h1>
+            <p>Discover your unique visual style with AI-powered brand analysis. Generate color palettes, typography, and design elements that reflect your personality and profession.</p>
+            <button class="cta-button">Start Your Brand Journey</button>
+        </section>
+
+        <div class="dashboard">
+            <div class="input-section">
+                <h2 class="section-title">Define Your Brand</h2>
+                
+                <div class="form-group">
+                    <label for="profession">Profession</label>
+                    <select id="profession">
+                        <option value="">Select your profession</option>
+                        <option value="designer">Designer</option>
+                        <option value="developer">Developer</option>
+                        <option value="entrepreneur">Entrepreneur</option>
+                        <option value="consultant">Consultant</option>
+                        <option value="creator">Content Creator</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="vibe">Brand Vibe</label>
+                    <select id="vibe">
+                        <option value="">Select your vibe</option>
+                        <option value="modern">Modern & Clean</option>
+                        <option value="creative">Creative & Bold</option>
+                        <option value="professional">Professional & Trustworthy</option>
+                        <option value="minimal">Minimal & Elegant</option>
+                        <option value="friendly">Friendly & Approachable</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Describe Your Brand (3 words)</label>
+                    <div class="keywords">
+                        <input type="text" class="keyword-input" placeholder="e.g., Modern">
+                        <input type="text" class="keyword-input" placeholder="e.g., Creative">
+                        <input type="text" class="keyword-input" placeholder="e.g., Calm">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="brand-name">Brand Name</label>
+                    <input type="text" id="brand-name" placeholder="Enter your brand or personal name">
+                </div>
+                
+                <button class="generate-btn">Generate Visual Identity</button>
+            </div>
+            
+            <div class="visualization-section">
+                <h2 class="section-title">Your Brand Preview</h2>
+                
+                <div class="brand-preview">
+                    <div class="brand-header">
+                        <div class="brand-name">Aspia</div>
+                        <div class="brand-tagline">Front-End Designer & Creative Developer</div>
+                    </div>
+                    
+                    <div class="color-palette">
+                        <div class="color color-primary" title="#2563eb"></div>
+                        <div class="color color-secondary" title="#7c3aed"></div>
+                        <div class="color color-accent" title="#06b6d4"></div>
+                        <div class="color color-light" title="#f8fafc"></div>
+                        <div class="color color-dark" title="#1e293b"></div>
+                    </div>
+                    
+                    <div class="typography-sample">
+                        <div class="font-primary">Inter — Primary Font</div>
+                        <div class="font-secondary">Playfair Display — Secondary Font</div>
+                        <p>This combination creates a perfect balance between modern professionalism and elegant creativity.</p>
+                    </div>
+                    
+                    <div class="ui-elements">
+                        <div class="ui-element btn-sample">Button Style</div>
+                        <div class="ui-element card-sample">Card Design</div>
+                    </div>
+                </div>
+                
+                <div class="export-section">
+                    <button class="export-btn"><i class="fas fa-download"></i> Export as PNG</button>
+                    <button class="export-btn"><i class="fas fa-link"></i> Shareable Link</button>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Created with ❤️ by <a href="#" class="portfolio-link">Aspia</a> — Front-End Designer & Developer</p>
+            <p>This project showcases advanced CSS, JavaScript, and UI/UX design skills</p>
+        </footer>
+    </div>
+
+    <script>
+        // Color palette generator
+        const colorElements = document.querySelectorAll('.color');
+        
+        colorElements.forEach(color => {
+            color.addEventListener('click', function() {
+                const colorValue = this.getAttribute('title');
+                navigator.clipboard.writeText(colorValue).then(() => {
+                    const originalTitle = this.getAttribute('title');
+                    this.setAttribute('title', 'Copied!');
+                    setTimeout(() => {
+                        this.setAttribute('title', originalTitle);
+                    }, 2000);
+                });
+            });
+        });
+        
+        // Form interaction
+        const generateBtn = document.querySelector('.generate-btn');
+        const brandNameElement = document.querySelector('.brand-name');
+        const brandNameInput = document.getElementById('brand-name');
+        
+        brandNameInput.addEventListener('input', function() {
+            if (this.value) {
+                brandNameElement.textContent = this.value;
+            } else {
+                brandNameElement.textContent = 'Aspia';
+            }
+        });
+        
+        generateBtn.addEventListener('click', function() {
+            // In a real app, this would call an AI API
+            // For demo, we'll just show a loading state
+            this.textContent = 'Generating...';
+            this.disabled = true;
+            
+            setTimeout(() => {
+                this.textContent = 'Generate Visual Identity';
+                this.disabled = false;
+                
+                // Show a success message
+                alert('Your brand identity has been generated! In a full implementation, this would connect to an AI API to create personalized results.');
+            }, 1500);
+        });
+        
+        // Profession and vibe impact on colors
+        const professionSelect = document.getElementById('profession');
+        const vibeSelect = document.getElementById('vibe');
+        
+        function updateColorsBasedOnInputs() {
+            const profession = professionSelect.value;
+            const vibe = vibeSelect.value;
+            
+            // This would be more sophisticated in a real app
+            if (profession === 'designer' && vibe === 'creative') {
+                document.documentElement.style.setProperty('--primary', '#ec4899');
+                document.documentElement.style.setProperty('--secondary', '#8b5cf6');
+            } else if (profession === 'developer' && vibe === 'modern') {
+                document.documentElement.style.setProperty('--primary', '#06b6d4');
+                document.documentElement.style.setProperty('--secondary', '#3b82f6');
+            } else if (profession === 'entrepreneur' && vibe === 'professional') {
+                document.documentElement.style.setProperty('--primary', '#1e293b');
+                document.documentElement.style.setProperty('--secondary', '#475569');
+            }
+            // Reset to defaults if no specific combination
+            else {
+                document.documentElement.style.setProperty('--primary', '#2563eb');
+                document.documentElement.style.setProperty('--secondary', '#7c3aed');
+            }
+        }
+        
+        professionSelect.addEventListener('change', updateColorsBasedOnInputs);
+        vibeSelect.addEventListener('change', updateColorsBasedOnInputs);
+    </script>
+</body>
+</html>
