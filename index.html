@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BrandCraft — Personal Brand Visualizer</title>
+    <title>Visage — Personal Brand Visualizer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --secondary: #7c3aed;
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
             --accent: #06b6d4;
             --light: #f8fafc;
             --dark: #1e293b;
@@ -24,9 +24,10 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            color: var(--dark);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--light);
             line-height: 1.6;
+            min-height: 100vh;
         }
 
         .container {
@@ -47,13 +48,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 32px;
             font-weight: 600;
-            color: var(--dark);
-        }
-
-        .logo span {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: white;
         }
 
         .nav-links {
@@ -63,13 +58,13 @@
 
         .nav-links a {
             text-decoration: none;
-            color: var(--dark);
+            color: rgba(255,255,255,0.8);
             font-weight: 500;
             transition: color 0.3s;
         }
 
         .nav-links a:hover {
-            color: var(--primary);
+            color: white;
         }
 
         .hero {
@@ -82,34 +77,39 @@
             font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 20px;
-            background: linear-gradient(135deg, var(--dark), var(--primary));
+            background: linear-gradient(135deg, #fff, #e0f2fe);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero p {
             font-size: 1.2rem;
-            color: var(--gray);
+            color: rgba(255,255,255,0.8);
             margin-bottom: 30px;
         }
 
         .cta-button {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
-        }
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+}
 
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.3);
-        }
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(99, 102, 241, 0.4);
+    background: linear-gradient(135deg, #5658d4, #7c3aed);
+}
+
+.cta-button:active {
+    transform: translateY(-1px);
+}
 
         .dashboard {
             display: grid;
@@ -119,17 +119,19 @@
         }
 
         .input-section {
-            background: white;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .section-title {
             font-size: 24px;
             font-weight: 600;
             margin-bottom: 30px;
-            color: var(--dark);
+            color: white;
         }
 
         .form-group {
@@ -140,22 +142,29 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: var(--dark);
+            color: white;
         }
 
         input, select, textarea {
             width: 100%;
             padding: 12px 15px;
-            border: 1px solid #e2e8f0;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
             border-radius: 10px;
             font-family: 'Inter', sans-serif;
             font-size: 16px;
-            transition: border-color 0.3s;
+            transition: all 0.3s;
+            color: white;
+        }
+
+        input::placeholder {
+            color: rgba(255,255,255,0.6);
         }
 
         input:focus, select:focus, textarea:focus {
             outline: none;
             border-color: var(--primary);
+            background: rgba(255,255,255,0.15);
         }
 
         .keywords {
@@ -178,6 +187,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: transform 0.3s;
+            margin-top: 10px;
         }
 
         .generate-btn:hover {
@@ -185,151 +195,235 @@
         }
 
         .visualization-section {
-            background: white;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 40px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
         }
 
         .brand-preview {
-            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
+            background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(10px);
         }
 
         .brand-header {
+            
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
         }
 
         .brand-name {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--dark);
+           font-size: 28px;
+    font-weight: 700;
+    color: white;
+    font-family: 'Playfair Display', serif;
         }
 
-        .brand-tagline {
-            color: var(--gray);
-            font-size: 16px;
-        }
+      .brand-tagline {
+    color: rgba(255,255,255,0.8);
+    font-size: 16px;
+    font-style: italic;
+}
 
-        .color-palette {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
+.color-palette {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 30px;
+    justify-content: center;
+}
 
-        .color {
-            width: 60px;
-            height: 60px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
+.color {
+    width: 70px;
+    height: 70px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 3px solid rgba(255,255,255,0.3);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        .color:hover {
-            transform: scale(1.1);
-        }
+.color:hover {
+    transform: scale(1.15);
+    border-color: white;
+}
 
-        .color-primary {
-            background: var(--primary);
-        }
+.color:hover .color-tooltip {
+    opacity: 1;
+    transform: translateY(-10px);
+}
 
-        .color-secondary {
-            background: var(--secondary);
-        }
+.color-tooltip {
+    position: absolute;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    bottom: -30px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
 
-        .color-accent {
-            background: var(--accent);
-        }
+.color-primary { background: #6366f1; }
+.color-secondary { background: #8b5cf6; }
+.color-accent { background: #06b6d4; }
+.color-light { background: #f8fafc; }
+.color-dark { background: #1e293b; }
 
-        .color-light {
-            background: var(--light);
-            border: 1px solid #e2e8f0;
-        }
+.typography-sample {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 10px;
+}
 
-        .color-dark {
-            background: var(--dark);
-        }
+.font-primary {
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: white;
+}
 
-        .typography-sample {
-            margin-bottom: 30px;
-        }
+.font-secondary {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: white;
+    font-style: italic;
+}
 
-        .font-primary {
-            font-family: 'Inter', sans-serif;
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
+.font-description {
+    color: rgba(255,255,255,0.8);
+    font-size: 14px;
+    line-height: 1.5;
+}
 
-        .font-secondary {
-            font-family: 'Playfair Display', serif;
-            font-size: 20px;
-            margin-bottom: 15px;
-        }
+.ui-elements {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
 
-        .ui-elements {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
+.ui-element {
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 500;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
 
-        .ui-element {
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            font-weight: 500;
-        }
+.ui-element:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-2px);
+}
 
-        .btn-sample {
-            background: var(--primary);
-            color: white;
-        }
+.btn-sample {
+    background: #6366f1 !important;
+}
 
-        .card-sample {
-            background: white;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
+.btn-sample:hover {
+    background: #5658d4 !important;
+}
 
-        .export-section {
-            text-align: center;
-            margin-top: 40px;
-        }
+.card-sample:hover {
+    background: rgba(255,255,255,0.15) !important;
+}
 
-        .export-btn {
-            background: white;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin: 0 10px;
-        }
+.export-section {
+    text-align: center;
+    margin-top: 30px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
 
-        .export-btn:hover {
-            background: var(--primary);
-            color: white;
-        }
+.export-btn {
+    background: rgba(255,255,255,0.15);
+    color: white;
+    border: 2px solid rgba(255,255,255,0.3);
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.export-btn:hover {
+    background: #6366f1;
+    border-color: #6366f1;
+    transform: translateY(-2px);
+}
 
         footer {
             text-align: center;
             padding: 40px 0;
             margin-top: 60px;
-            border-top: 1px solid #e2e8f0;
-            color: var(--gray);
+            border-top: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.8);
         }
 
         .portfolio-link {
-            color: var(--primary);
+            color: white;
             text-decoration: none;
             font-weight: 500;
+        }
+
+        /* New variation styles */
+        .profile-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .profile-img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 4px solid rgba(255,255,255,0.3);
+        }
+
+        .profile-name {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #fff, #e0f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .profile-title {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 20px;
         }
 
         @media (max-width: 1024px) {
@@ -354,13 +448,19 @@
             .ui-elements {
                 grid-template-columns: 1fr;
             }
+            
+            .brand-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <div class="logo"><span>BrandCraft</span></div>
+            <div class="logo">Visage</div>
             <nav class="nav-links">
                 <a href="#" class="active">Home</a>
                 <a href="#">Features</a>
@@ -370,11 +470,18 @@
             </nav>
         </header>
 
-        <section class="hero">
-            <h1>Visualize Your Personal Brand Identity</h1>
-            <p>Discover your unique visual style with AI-powered brand analysis. Generate color palettes, typography, and design elements that reflect your personality and profession.</p>
-            <button class="cta-button">Start Your Brand Journey</button>
+        <section class="profile-section">
+            <div class="profile-name">Aspia</div>
+            <div class="profile-title">Front-End Designer & Creative Developer</div>
         </section>
+
+        <section class="hero">
+    <h1>Visualize Your Personal Brand Identity</h1>
+    <p>Discover your unique visual style with AI-powered brand analysis. Generate color palettes, typography, and design elements that reflect your personality and profession.</p>
+    <button class="cta-button" onclick="startBrandJourney()">
+        Start Your Brand Journey
+    </button>
+</section>
 
         <div class="dashboard">
             <div class="input-section">
@@ -419,52 +526,285 @@
                     <input type="text" id="brand-name" placeholder="Enter your brand or personal name">
                 </div>
                 
-                <button class="generate-btn">Generate Visual Identity</button>
+                <button class="generate-btn" onclick="generateBrandIdentity()">
+    <i class="fas fa-magic"></i> Generate Visual Identity
+</button>
+
             </div>
             
             <div class="visualization-section">
-                <h2 class="section-title">Your Brand Preview</h2>
-                
-                <div class="brand-preview">
-                    <div class="brand-header">
-                        <div class="brand-name">Aspia</div>
-                        <div class="brand-tagline">Front-End Designer & Creative Developer</div>
-                    </div>
-                    
-                    <div class="color-palette">
-                        <div class="color color-primary" title="#2563eb"></div>
-                        <div class="color color-secondary" title="#7c3aed"></div>
-                        <div class="color color-accent" title="#06b6d4"></div>
-                        <div class="color color-light" title="#f8fafc"></div>
-                        <div class="color color-dark" title="#1e293b"></div>
-                    </div>
-                    
-                    <div class="typography-sample">
-                        <div class="font-primary">Inter — Primary Font</div>
-                        <div class="font-secondary">Playfair Display — Secondary Font</div>
-                        <p>This combination creates a perfect balance between modern professionalism and elegant creativity.</p>
-                    </div>
-                    
-                    <div class="ui-elements">
-                        <div class="ui-element btn-sample">Button Style</div>
-                        <div class="ui-element card-sample">Card Design</div>
-                    </div>
-                </div>
-                
-                <div class="export-section">
-                    <button class="export-btn"><i class="fas fa-download"></i> Export as PNG</button>
-                    <button class="export-btn"><i class="fas fa-link"></i> Shareable Link</button>
-                </div>
+    <h2 class="section-title">Your Brand Preview</h2>
+    
+    <div class="brand-preview">
+        <div class="brand-header">
+            <div class="brand-name" id="previewName">Aspia</div>
+            <div class="brand-tagline" id="previewTagline">Front-End Designer & Creative Developer</div>
+        </div>
+        
+        <div class="color-palette">
+            <div class="color color-primary" data-color="#6366f1" onclick="copyColor(this)">
+                <span class="color-tooltip">Click to copy</span>
+            </div>
+            <div class="color color-secondary" data-color="#8b5cf6" onclick="copyColor(this)">
+                <span class="color-tooltip">Click to copy</span>
+            </div>
+            <div class="color color-accent" data-color="#06b6d4" onclick="copyColor(this)">
+                <span class="color-tooltip">Click to copy</span>
+            </div>
+            <div class="color color-light" data-color="#f8fafc" onclick="copyColor(this)">
+                <span class="color-tooltip">Click to copy</span>
+            </div>
+            <div class="color color-dark" data-color="#1e293b" onclick="copyColor(this)">
+                <span class="color-tooltip">Click to copy</span>
             </div>
         </div>
         
+        <div class="typography-sample">
+            <div class="font-primary">Inter — Primary Font</div>
+            <div class="font-secondary">Playfair Display — Secondary Font</div>
+            <p class="font-description">This combination creates a perfect balance between modern professionalism and elegant creativity.</p>
+        </div>
+        
+        <div class="ui-elements">
+            <div class="ui-element btn-sample" onclick="applyStyle('primary')">
+                <i class="fas fa-mouse-pointer"></i> Button Style
+            </div>
+            <div class="ui-element card-sample" onclick="applyStyle('card')">
+                <i class="fas fa-square"></i> Card Design
+            </div>
+        </div>
+    </div>
+    
+    <div class="export-section">
+        <button class="export-btn" onclick="exportDesign()">
+            <i class="fas fa-download"></i> Export as PNG
+        </button>
+        <button class="export-btn" onclick="shareDesign()">
+            <i class="fas fa-link"></i> Shareable Link
+        </button>
+    </div>
+</div>
+
+        </div>
+        
         <footer>
-            <p>Created with ❤️ by <a href="#" class="portfolio-link">Aspia</a> — Front-End Designer & Developer</p>
+            <p>Created with ❤️ by <a href="#" class="portfolio-link">Aspia</a> — Front-End Designer & Creative Developer</p>
             <p>This project showcases advanced CSS, JavaScript, and UI/UX design skills</p>
         </footer>
     </div>
 
     <script>
+        function generateBrandIdentity() {
+    const profession = document.getElementById('profession').value;
+    const vibe = document.getElementById('vibe').value;
+    const brandName = document.getElementById('brand-name').value;
+    
+    // Validation check
+    if (!profession || !vibe) {
+        alert('Please select both Profession and Brand Vibe to generate your identity!');
+        return;
+    }
+    
+    // Show loading state
+    const generateBtn = document.querySelector('.generate-btn');
+    const originalText = generateBtn.innerHTML;
+    generateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+    generateBtn.disabled = true;
+    
+    // Simulate AI processing
+    setTimeout(() => {
+        // Update brand preview
+        updateBrandPreview(profession, vibe, brandName);
+        
+        // Show success message
+        showSuccessMessage();
+        
+        // Restore button
+        generateBtn.innerHTML = originalText;
+        generateBtn.disabled = false;
+        
+    }, 2000); // 2 second delay for simulation
+}
+
+// Update Brand Preview based on inputs
+function updateBrandPreview(profession, vibe, brandName) {
+    // Update name if provided
+    if (brandName) {
+        document.getElementById('previewName').textContent = brandName;
+    }
+    
+    // Update colors based on profession and vibe
+    updateColors(profession, vibe);
+    
+    // Update tagline based on inputs
+    updateTagline(profession, vibe);
+    
+    // Show the preview section smoothly
+    const previewSection = document.querySelector('.brand-preview');
+    previewSection.style.opacity = '0';
+    previewSection.style.transform = 'translateY(20px)';
+    
+    setTimeout(() => {
+        previewSection.style.opacity = '1';
+        previewSection.style.transform = 'translateY(0)';
+        previewSection.style.transition = 'all 0.5s ease';
+    }, 100);
+}
+
+// Update Colors Function
+function updateColors(profession, vibe) {
+    const colorMap = {
+        'designer-creative': { primary: '#ec4899', secondary: '#8b5cf6', accent: '#f59e0b' },
+        'developer-modern': { primary: '#06b6d4', secondary: '#3b82f6', accent: '#10b981' },
+        'entrepreneur-professional': { primary: '#1e293b', secondary: '#475569', accent: '#64748b' },
+        'creator-friendly': { primary: '#84cc16', secondary: '#f59e0b', accent: '#ef4444' },
+        'default': { primary: '#6366f1', secondary: '#8b5cf6', accent: '#06b6d4' }
+    };
+    
+    const key = `${profession}-${vibe}`;
+    const colors = colorMap[key] || colorMap['default'];
+    
+    // Update CSS variables
+    document.documentElement.style.setProperty('--primary', colors.primary);
+    document.documentElement.style.setProperty('--secondary', colors.secondary);
+    document.documentElement.style.setProperty('--accent', colors.accent);
+    
+    // Update color palette display
+    updateColorPalette(colors);
+}
+
+// Update Color Palette Display
+function updateColorPalette(colors) {
+    const colorElements = {
+        'primary': document.querySelector('.color-primary'),
+        'secondary': document.querySelector('.color-secondary'), 
+        'accent': document.querySelector('.color-accent')
+    };
+    
+    for (const [type, element] of Object.entries(colorElements)) {
+        if (element) {
+            element.style.background = colors[type];
+            element.setAttribute('data-color', colors[type]);
+        }
+    }
+}
+
+// Update Tagline
+function updateTagline(profession, vibe) {
+    const taglines = {
+        'designer': 'Creative Design Solutions & Visual Innovation',
+        'developer': 'Code with Purpose, Design with Passion', 
+        'entrepreneur': 'Building Brands That Make an Impact',
+        'creator': 'Content Creation with Strategic Vision',
+        'default': 'Front-End Designer & Creative Developer'
+    };
+    
+    const tagline = taglines[profession] || taglines['default'];
+    document.getElementById('previewTagline').textContent = tagline;
+}
+
+// Show Success Message
+function showSuccessMessage() {
+    // Create success notification
+    const notification = document.createElement('div');
+    notification.innerHTML = `
+        <div style="
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            z-index: 1000;
+            animation: slideIn 0.5s ease;
+        ">
+            <i class="fas fa-check-circle"></i> Brand Identity Generated Successfully!
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        notification.remove();
+    }, 3000);
+}
+
+// Add CSS for animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from { transform: translateX(100px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    
+    .generate-btn:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+    }
+`;
+document.head.appendChild(style);
+        function startBrandJourney() {
+    // Scroll to the input section
+    document.querySelector('.input-section').scrollIntoView({
+        behavior: 'smooth'
+    });
+    
+    // Add focus to first input field
+    document.getElementById('profession').focus();
+    
+    // Optional: Show a welcome message
+    setTimeout(() => {
+        alert("Welcome to your brand journey! Let's start by defining your profession.");
+    }, 800);
+}
+        function copyColor(element) {
+    const color = element.getAttribute('data-color');
+    navigator.clipboard.writeText(color).then(() => {
+        const tooltip = element.querySelector('.color-tooltip');
+        const originalText = tooltip.textContent;
+        tooltip.textContent = 'Copied!';
+        tooltip.style.background = '#10b981';
+        
+        setTimeout(() => {
+            tooltip.textContent = originalText;
+            tooltip.style.background = 'rgba(0,0,0,0.8)';
+        }, 2000);
+    });
+}
+
+// Apply style function
+function applyStyle(type) {
+    if (type === 'primary') {
+        alert('Primary button style applied! This would update all buttons in a real application.');
+    } else if (type === 'card') {
+        alert('Card design style applied! This would update all cards in a real application.');
+    }
+}
+
+// Export function
+function exportDesign() {
+    alert('Design exported as PNG! In a real application, this would generate and download an image.');
+}
+
+// Share function
+function shareDesign() {
+    alert('Shareable link created! In a real application, this would generate a unique URL.');
+}
+
+// Update preview based on form inputs
+document.addEventListener('DOMContentLoaded', function() {
+    const nameInput = document.getElementById('brand-name');
+    const previewName = document.getElementById('previewName');
+    
+    if (nameInput && previewName) {
+        nameInput.addEventListener('input', function() {
+            previewName.textContent = this.value || 'Asoia';
+        });
+    }
+});
         // Color palette generator
         const colorElements = document.querySelectorAll('.color');
         
@@ -530,8 +870,8 @@
             }
             // Reset to defaults if no specific combination
             else {
-                document.documentElement.style.setProperty('--primary', '#2563eb');
-                document.documentElement.style.setProperty('--secondary', '#7c3aed');
+                document.documentElement.style.setProperty('--primary', '#6366f1');
+                document.documentElement.style.setProperty('--secondary', '#8b5cf6');
             }
         }
         
